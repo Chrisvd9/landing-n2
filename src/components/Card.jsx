@@ -1,21 +1,17 @@
-import React from "react";
+import PanalImg from "../assets/img/panal-rbg.png";
 
 const Card = () => {
   return (
-    <div className="card w-full bg-base-100 shadow-xl h-full">
-      <figure>
-        <img
-          src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-          alt="Shoes"
-          className="w-full"
-        />
+    <div className="card w-full bg-gradient-to-t from-[#101013] to-[#101013]/85 text-transparent shadow-xl h-full">
+      <figure className="z-10 realtive">
+        <img src={PanalImg} alt="Panal" className="w-full" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">Shoes!</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
-        </div>
+        <h3 className="text-[#E4E4E7]">Lorem</h3>
+        <p className="text-[#A1A1AA]">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. distinctio
+          aspernatur beatae ratione aliquam?
+        </p>
       </div>
     </div>
   );

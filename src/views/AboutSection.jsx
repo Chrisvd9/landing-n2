@@ -1,14 +1,43 @@
+import React, { useRef } from "react";
 import BeeImg from "../assets/img/bee-3d-removebg.png";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useFollowPointer } from "../utils/useFollowPointer";
 
 const AboutSection = () => {
+  const beeRef = useRef(null);
+  const targetRef = useRef(null);
+
+  const { x, y } = useFollowPointer(beeRef);
+
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Establecer límites
+  const xMin = -100;
+  const xMax = 100;
+  const yMin = -50;
+  const yMax = 50;
+
+  const restrictedX = Math.min(Math.max(x, xMin), xMax);
+  const restrictedY = Math.min(Math.max(y, yMin), yMax);
+
+  const textX = useTransform(scrollYProgress, [0, 0.7], [-100, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.7], [-50, 0]);
+
   return (
-    <div className="hero h-screen">
+    <motion.section id="about" className="hero h-screen">
       <div className="grid lg:grid-cols-2 px-[34px] place-items-center">
         <div>
-          <h2 className="font-bold">
-            I partner with venture capital and accelerators — helping shape
-            investments as a Design Director.{" "}
-          </h2>
+          <motion.h2
+            ref={targetRef}
+            style={{ x: textX, y: textY }}
+            className="font-bold"
+          >
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quis
+            hic placeat.
+          </motion.h2>
           <p className="text-xl py-6">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -26,9 +55,20 @@ const AboutSection = () => {
             pariatur.
           </p>
         </div>
-        <img src={BeeImg} className="max-w-lg xl:max-w-3xl hidden sm:block" />
+        <motion.div
+          ref={beeRef}
+          animate={{ x: restrictedX, y: restrictedY }}
+          transition={{
+            type: "spring",
+            damping: 3,
+            stiffness: 50,
+            restDelta: 0.001,
+          }}
+        >
+          <img src={BeeImg} className="max-w-lg xl:max-w-3xl hidden sm:block" />
+        </motion.div>
       </div>
-    </div>
+    </motion.section>
   );
 };
 

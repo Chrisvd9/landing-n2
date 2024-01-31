@@ -1,3 +1,4 @@
+import Brands from "./components/Brands";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import AboutSection from "./views/AboutSection";
@@ -11,13 +12,16 @@ function App() {
     <>
       <Header />
       <main>
-        <div className="mb-32">
+        <div className="mb-[400px]">
           <HeroSection />
+        </div>
+        <div className="mb-[400px]">
+          <Brands />
         </div>
         <div className="mb-[700px] md:mb-[200px]">
           <AboutSection />
         </div>
-        <div>
+        <div className="mb-[70vh]">
           <ServiceSection />
         </div>
         <div>
